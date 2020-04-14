@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'wt2-week8-Juvrience';
+  title = 'uts-wt2-juvrience';
 }

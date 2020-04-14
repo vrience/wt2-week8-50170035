@@ -1,0 +1,54 @@
+<div *ngIf="error">To Do List with ID {{ this.id }} is not available</div>
+<form>
+  <div class="form-container" [formGroup]="itemForm">
+    <h1>Create To Do List</h1>
+    <mat-form-field appearance="floating">
+      <mat-label>What are you going to do?</mat-label>
+      <input matInput placeholder="What to do?" formControlName="message" />
+      <mat-error *ngIf="message.invalid && message.touched">
+        To Do List has to be 4 characters mininum and cannot be empty
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="floating">
+      <mat-label>Deadline Time</mat-label>
+      <input matInput placeholder="deadline time?" formControlName="time" />
+      <mat-error *ngIf="time.invalid && time.touched">
+        Deadline time is required
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>To Do List Status</mat-label>
+      <mat-select matNativeControl formControlName="status">
+        <mat-option value="done">
+          Done
+        </mat-option>
+        <mat-option value="undone">
+          Undone
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <mat-checkbox formControlName="check">{{
+    update
+      ? "I want to update this user"
+      : "I agree to the terms and conditions"
+  }}</mat-checkbox>
+
+    <div class="button-container">
+      <button type="submit" mat-raised-button color="warn" *ngIf="update" (click)="deleteItem()">
+        Delete
+      </button>
+      <span class="spacer"></span>
+      <button type="submit" mat-raised-button color="primary" [disabled]="itemForm.invalid" *ngIf="!update"
+        (click)="postItem()">
+        Add User
+      </button>
+      <button type="submit" mat-raised-button color="accent" [disabled]="itemForm.invalid" *ngIf="update"
+        (click)="updateItem()">
+        Update
+      </button>
+    </div>
+  </div>
+</form>
